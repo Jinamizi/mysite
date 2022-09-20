@@ -1,0 +1,6 @@
+<h3>Sign Up</h3>
+<form action="{% url 'actilist:signup' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" name="" value="Submit">
+</form>

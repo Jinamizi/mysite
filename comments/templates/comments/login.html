@@ -1,0 +1,15 @@
+{% extends 'comments/base.html' %}
+{% block title %}Login in.{% endblock %}
+
+<body>
+	<p>Fill in the following form to Log in to Comments</p>
+	{{ form.non_field_errors}}
+	<form action="{% url 'comments:login' %}" method="post">
+		{% csrf_token %}
+		<div id='user-data-input'>
+			{{ form.as_table }}
+			<input type="submit" name="" value="Logi in">
+			<p>Don't have account? <a href="{% url 'comments:signin' %}">Sign in</a> </p>
+		</div>
+	</form>
+</body>

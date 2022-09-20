@@ -1,0 +1,43 @@
+{% extends 'polls/base.html' %}
+{% block title %}Comments | {{question.question_text}}  {% endblock %}
+
+{% block content %}
+
+<h3>{{ question.question_text }}</h3>
+
+{% for comment in comments %}
+	<div id="comment">
+		<div id="comment-date">
+			<p>{{ comment.date_commented|date:"d M Y, H:i" }}</p>
+		</div>
+
+		<div id="comment-text">
+			<p>{{ comment.comment_text }}</p>
+		</div>
+
+		<div id="reaction">
+			<p>
+				<a href="{% url 'polls:like_comment' comment.id %}">Like: {{ comment.likes }}</a> | 
+				<a href="{% url 'polls:dislike_comment' comment.id %}">Dislike: {{ comment.dislikes }}</a> | 
+				<a href="{% url 'polls:comments_on_comment' comment.id %}">Comment {{ comment.commentcomment_set.count|pluralize }}: {{ comment.commentcomment_set.count }}</a>
+			</p>
+		</div>
+	</div>
+{% empty %}
+	<p>No comment available</p>
+{% endfor %}
+
+{% if more %}
+	<p><a href="{% url 'polls:comment' question.id batch %}">More comments</a></p>
+{% endif %}
+
+<p>Add comment</p>
+<form action="{% url 'polls:add_comment' question.id %}" method="post">
+	{% csrf_token %}
+	<textarea name="comment" id="comment-area" required></textarea><br>
+	<input type="submit" name="submit" value="Comment">
+</form>
+
+<p><a href="{% url 'polls:index' %}">Home</a></p>
+
+{% endblock %}

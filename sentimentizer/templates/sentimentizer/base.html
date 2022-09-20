@@ -1,0 +1,27 @@
+{% load static %}
+
+<! DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} {% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/base.css' %}">	
+</head>
+<body>
+	<!--Header -->
+	<div id="header">
+		<div id="branding">
+			<h1 id ="site-name">Sentimentizer</h1>
+		</div>
+
+		<div id="user-tools">
+			<a href="">Login</a> | <a href="">Sign In</a>
+		</div>
+
+	</div>
+	<!-- END Header -->
+
+	{% block content %}{% endblock %}
+
+</body>
+</html>
+	

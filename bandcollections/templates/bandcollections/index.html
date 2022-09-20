@@ -1,0 +1,27 @@
+{% extends 'bandcollections/base.html' %}-->
+{% block title %}Bands{% endblock %}
+{% block content %}
+<body>
+	{% if bands %}
+		<table style="width: 100%">
+			<tr>
+				<th>Band</th>
+				<th>Date formed</th>
+				<th>No. of Members</th>
+				<th>No. of Songs</th>
+			</tr>
+			{% for band in bands %}
+			<tr>
+				<td><a href="{% url 'bandcollections:band' band.id %}">{{ band.stage_name }}</a></td>
+				<td>{{ band.date_formed|date:"F j, Y" }}</td>
+				<td>{{ band.number_of_musicians }}</td>
+				<td>{{ band.number_of_songs }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<p>No bands currently registered.</p> 
+	{% endif %}
+	<p>Click <a href="{% url 'bandcollections:register' %}">here<a> to register a band.</p>
+</body>
+{% endblock %}

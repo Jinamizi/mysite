@@ -1,0 +1,25 @@
+{% extends 'musiciancollections/base.html' %}
+{% block title %}musician({{ musician.stage_name }}). {% endblock %}
+<body>
+	{% block content %}
+		{% if musician.musicianti_set.count: %}
+			<table>
+				{% for musician_info in musician.musicianti_set.all %}
+					<tr>
+						<td>{{ musician_info.title }}</td>
+						<td>{{ musician_info.information }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<p>Stage name: <strong>{{ musician.stage_name }}</strong>.</p>
+			<p>Real name: <strong>{{ musician.real_name }}</strong>.</p>
+			<p>Band: <strong>{{ musician.get_band }}</strong>.</p>
+		{% endif %}
+		{% for musician_info in musician.musiciandi_set.all %}
+			<h3><u>{{ musician_info.title }}</u></h3>
+			<p>{{ musician_info.information }}</p>
+		{% endfor %}
+		<ol> 
+	{% endblock %}
+</body>

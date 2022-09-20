@@ -1,0 +1,16 @@
+{% extends 'bandcollections/base.html' %}
+{% block title %}Join({{ band.stage_name }}){% endblock %}
+{% block content %}
+<body>
+	<p>Fill in the following form to join <strong>{{ band.stage_name }}</strong>.</p>
+	<form action="{% url 'bandcollections:join' band.id %}" method="post">
+		{% csrf_token %}
+		<div>
+			<center>
+				{{ form.as_p }}
+				<input type="submit" value="Submit" name="">
+			</center>
+		</div>
+	</form>
+</body>
+{% endblock %}

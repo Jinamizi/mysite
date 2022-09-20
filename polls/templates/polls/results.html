@@ -1,0 +1,27 @@
+{% extends 'polls/base.html' %}
+{% block title %}Results. | {{question.question_text}}  {% endblock %}
+
+{% block content %}
+
+<h1>{{ question.question_text }}</h1>
+
+<table>
+	{% for choice in question.choice_set.all %}
+		<tr>
+			<td>{{ choice.choice_text}}</td>
+			<td>{{ choice.votes }} vote{{ choice.votes|pluralize }}</td>
+			<td>({{ choice.get_percentage }} %)</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<p>
+	<a href="{% url 'polls:like_question' question.id %}">Like: {{ question.likes }}</a> | 
+	<a href="{% url 'polls:dislike_question' question.id %}">Dislike: {{ question.dislikes }}</a> | 
+	<a href="{% url 'polls:question_comments' question.id %}">Comment{{ question.total_comments|pluralize }}: {{ question.total_comments }} | 
+	<a href="{% url 'polls:detail' question.id %}">Vote again?</a> | 
+	<a href="{% url 'polls:index' %}">Home</a> | 
+
+</p>
+
+{% endblock %}

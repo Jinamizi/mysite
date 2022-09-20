@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		{% extends "news/base.html" %}
+		{% block title %}Articles Available.{% endblock %}
+	</head>
+	<body>
+		{% block content %} 
+		{% if articles %}
+			{% for article in articles %}
+				<div class="article_holder">
+					<p><a href="{% url 'news:detail' article.id %}">{{ article.headline }}</a></p>
+					<p>{{ article.pub_date|date:"F j, Y"}} by {{ article.full_name}} </p>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>No articles available.</p>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

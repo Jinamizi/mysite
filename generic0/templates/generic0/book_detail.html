@@ -1,0 +1,9 @@
+<p>This page is for a book called {{ book.title }}. published by {{ book.publisher }} in the year {{ book.publication_date }}</p>
+<p>Authors: </p>
+<ol>
+{% for author in book.authors.all %}
+	<li><a href="{{ author.get_absolute_url }}">{{ author.name }}</a></li>
+{% endfor %}
+</ol>
+<a href="">Previous book</a>
+<a href="">Next book</a>

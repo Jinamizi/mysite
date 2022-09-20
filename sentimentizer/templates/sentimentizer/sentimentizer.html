@@ -1,0 +1,25 @@
+{% extends 'sentimentizer/base.html' %}
+{% block title %}Sentimentizer  {% endblock %}
+
+{% block content %}
+<form action="{% url 'sentimentizer:analyze' %}" method="post">
+	{% csrf_token %}
+	<textarea name="sentiment" id="sentiment-area" required></textarea><br>
+	<input type="submit" name="submit" value="Analyze">
+</form>
+<table>
+	<tr>
+		<td>Sentence:</td>
+		<td>{{ sentences }}</td>
+	</tr>
+	<tr>
+		<td>Positive:</td>
+		<td>{{ positives }}</td>
+	</tr>
+	<tr>
+		<td>Negative:</td>
+		<td>{{ negatives }}</td>
+	</tr>
+</table>
+
+{% endblock %}

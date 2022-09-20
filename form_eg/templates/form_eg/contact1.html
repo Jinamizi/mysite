@@ -1,0 +1,21 @@
+{{ form.non_field_errors }}
+<div class="fieldWrapper">
+	{{ form.subject.errors }}
+	<label for="{{ form.subject.id_for_label }}">Email subject:</label>
+	{{ form.subject }}
+</div>
+<div class="fieldWrapper">
+	{{ form.message.errors }}
+	<p>{{ form.message.label_tag }}</p>
+	{{ form.message }}
+</div>
+<div class="fieldWrapper">
+	{{ form.sender.errors }}
+	<label for="{{ form.sender.id_for_label }}">Your email address:</label>
+	{{ form.sender }}
+</div>
+<div class="fieldWrapper">
+	{{ form.cc_myself.errors }}
+	{{ form.cc_myself.label_tag}}
+	{{ form.cc_myself }}
+</div>

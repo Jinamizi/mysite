@@ -1,0 +1,51 @@
+{% extends 'polls/base.html' %}
+{% block title %}Comments | {{question.question_text}}  {% endblock %}
+
+{% block content %}
+
+<h3>{{ question.question_text }}</h3>
+
+<p>Add comment</p>
+<form action="{% url 'polls:add_comment' question.id %}" method="post">
+	{% csrf_token %}
+	<textarea name="comment" id="comment-area" required></textarea><br>
+	<input type="submit" name="submit" value="Comment">
+</form>
+
+{% for comment in page_obj %}
+	<div id="comment">
+		<span>
+		<div id="comment-date">
+			{{ comment.date_commented|date:"d M Y, H:i" }}
+		</div>
+
+		<div id="comment-text">
+			<br>{{ comment.comment_text }}
+		</div>
+
+		<div id="reaction">
+			<br>
+				<a href="{% url 'polls:like_comment' comment.id %}">Like: {{ comment.likes }}</a> | 
+				<a href="{% url 'polls:dislike_comment' comment.id %}">Dislike: {{ comment.dislikes }}</a> | 
+				<a href="{% url 'polls:comments_on_comment' comment.id %}">{{ comment.commentcomment_set.count }} Repl{{ comment.commentcomment_set.count|pluralize:"y,ies" }}</a>
+		</div>
+		</span>
+	</div>
+{% empty %}
+	<p>No comment available</p>
+{% endfor %}
+
+<div class="pagination">
+	<span class="step-links">
+		{% if page_obj.has_previous %}
+			<a href="?page={{ page_obj.previous_page_number }}">&laquo; previous</a>
+		{% endif %}
+
+		{% if page_obj.has_next %}
+			<a href="?page={{ page_obj.next_page_number }}">next &raquo;</a>
+		{% endif %}	
+	</span>
+</div>
+<p><a href="{% url 'polls:index' %}">Home</a> | <a href="{% url 'polls:results' question.id %}">Back</a></p>
+
+{% endblock %}

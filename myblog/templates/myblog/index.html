@@ -1,0 +1,9 @@
+{% if articles %}
+	{% for article in articles %}
+		<div class="articles">
+			<h4><a href="{% url 'myblog:display' article.id %}">{{ article.title }}</a></h4>
+			<p>Published {{ article.date_published|date:"F j, Y" }}</p>
+			<p>{{ article.content|truncatewords:80}}
+		</div>
+	{% endfor %}
+{% endif %}

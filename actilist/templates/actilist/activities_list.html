@@ -1,0 +1,25 @@
+<h2>Activities</h2>
+
+{% if object_list %}
+<table>
+	<th> 
+		<td>Activity</td>
+		<td>Starting time</td>
+		<td>Completion time</td>
+		<td>status</td>
+		<td>Time added</td>
+	</th>
+{% for activity in object_list %}
+
+	<tr>
+		<td>{{ activity.activity_description }}</td>
+		<td>{{ activity.start_time|date:'d/m/Y H:i' }}</td>
+		<td>{{ activity.done_time|date:'d/m/Y H:i' }}</td>
+		<td>{{ activity.done }}</td>
+		<td>{{ activity.date added|date:'d/m/Y H:i'}}</td>
+	</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No activities</p>
+{% endif %}

@@ -1,0 +1,19 @@
+<table>
+	<th><h3>{{ user.username }}</h3></th>
+	<tr>
+		<td>Date joined:</td>
+		<td>{{ user.date_joined|date:"F j, Y"}}</td>
+	</tr>
+	<tr>
+		<td>Activities:</td>
+		<td>{{ user.activity.count }}</td>
+	</tr>
+	<tr>
+		<td>Completed:</td>
+		<td>{{ user.activity_completed_count }}</td>
+	</tr>
+	<tr>
+		<td>Uncompleted:</td>
+		<td>{{ user.activity_uncompleted_count }}</td>
+	</tr>
+</table>

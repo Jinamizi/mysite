@@ -1,0 +1,27 @@
+{% extends 'bandcollections/base.html' %}
+{% block title %}Joined({{ band }}){% endblock %}
+{% block content %}
+<body>
+	<p><u>Dear <strong>{{ musician.stage_name }} </strong></u></p>
+	<p>Thank you for joining {{ band.stage_name }}. This band has <strong>{{ band.number_of_musicians }}</strong> member{{ band.number_of_musicians|pluralize }} and {{ band.music_set.count }} song{{ band.music_set.count|pluralize }}. </p> 
+	<p>Band name: <a href="{% url 'bandcollections:band' band.id %}"><strong>{{ band.stage_name }}</strong></a></p>
+	<p>Date formed: <strong>{{ band.date_formed|date:"F j, Y" }}</strong></p>
+	<h4>Members.</h4>
+	<ul>
+	{% for member in band.musician_set.all %}
+		<li><a href="{% url 'bandcollections:musician' band.id member.id">{{ member.stage_name }}</a></li>
+	{% endfor %}
+	</ul>
+
+	{% if band.get_songs %}
+		<h4>Songs.</h4>
+		<ul>
+		{% for song in band.get_songs %}
+			<li>{{ song.title }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+	<p>You are welcome.</p>
+</body>
+{% endblock %}

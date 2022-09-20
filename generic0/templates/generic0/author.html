@@ -1,0 +1,3 @@
+<p>This page is for {{ author.salutation }}. {{ author.name }}. <br>Email address: {{ author.email|default:"No email address" }}</p>
+<a href="{% url 'generic0:author-update' author.id %}">Edit</a>
+<a href="{% url 'generic0:author-delete' author.id %}">Delete</a>

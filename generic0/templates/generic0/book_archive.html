@@ -1,0 +1,14 @@
+<ul>
+	{% for book in latest %}
+		<li>{{ book.publication_date }} : <a href="{{ book.get_absolute_url }}"> {{ book.title }} </a></li>
+	{% empty %}
+		<p>No books available</p>
+	{% endfor %}
+</ul> 
+
+<p>Years</p>
+<ul>
+	{% for year in date_list %}
+		<li>{{ year|date:'Y' }}</li>
+	{% endfor %}
+</ul>

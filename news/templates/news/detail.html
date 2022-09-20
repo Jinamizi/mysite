@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% extends "news/base.html" %}
+	{% block title %}{{ article.headline }}{% endblock %}
+</head>
+<body>
+	{% block content %}
+	<h2>{{ article.headline }}</h2>
+	<p>{{ article.pub_date|date:"F j, Y"}} by {{ article.full_name}} </p>
+	<p>{{ article.detail }} </p>
+	{% endblock %}
+</body>
+</html>

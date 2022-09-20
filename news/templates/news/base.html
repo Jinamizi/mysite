@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'news:style.css' %}">
+</head>
+<body>
+	<h1>Nan-ya News Corporation</h1>
+	<img src="{% static 'news/images/cocacola.gif' %}" alt="Logo">
+	{% block content %}{% endblock %}
+</body>
+</html>

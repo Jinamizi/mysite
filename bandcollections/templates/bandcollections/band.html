@@ -1,0 +1,45 @@
+{% extends 'bandcollections/base.html' %}
+{% block title %}Band({{ band.stage_name }}). {% endblock %}
+<body>
+	{% block content %}
+		{% if band.bandti_set.count %}
+			<table>
+				{% for band_info in band.bandti_set.all %}
+					<tr>
+						<td>{{ band_info.title }}</td>
+						<td>{{ band_info.information }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<p>Stage name: <strong>{{ band.stage_name }}</strong></p>
+			<p>Date formed: <strong>{{ band.date_formed|date:"F j, Y" }}</strong></p>
+			<p>Number of members: <strong>{{ band.number_of_musicians }}</strong></p>
+			<p>Number of songs: <strong>{{ band.music_set.count }}</strong></p>
+		{% endif %}
+		{% for band_info in band.banddi_set.all %}
+			<h3><u>{{ band_info.title }}</u></h3>
+			<p>{{ band_info.information }}</p>
+		{% endfor %}
+
+		{% if band.get_musicians %}
+			<h4><u>Members</u></h4>
+			<ol> 
+			{% for musician in band.get_musicians %}
+				<li><a href="{% url 'bandcollections:musician' band.id musician.id %}">{{ musician.stage_name }}</a></li>
+			{% endfor %}
+			</ol>
+		{% endif %}
+
+		{% if band.get_songs %}
+			<h4><u>Songs.</u></h4>
+			<ul>
+			{% for song in band.get_songs %}
+				<li>{{ song.title }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+
+		<p>Click <a href="{% url 'bandcollections:join' band.id %}">here</a> to join this band.<p>
+	{% endblock %}
+</body>

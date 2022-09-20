@@ -1,0 +1,6 @@
+<h4>Using ContactForm</h4>
+<form action="{% url 'generic0:contact' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" name="" value="submit">
+</form>

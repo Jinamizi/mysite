@@ -1,0 +1,34 @@
+{% extends 'polls/base.html' %}
+{% block title %}Vote | {{question.question_text}}  {% endblock %}
+
+{% block content %}
+
+<h1>{{ question.question_text }} </h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if question.choice_set.all %}
+	<form action="{% url 'polls:vote' question.id %}" method="post">
+		{% csrf_token %}
+		{% for choice in question.choice_set.all %}
+			<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+			<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+		{% endfor %}
+
+		{% if question.hint_set.all %}
+			<strong><u>Hint</u></strong>
+			<ul>
+				{% for hint in question.hint_set.all %}
+					<li>{{hint.hint_text}}</li> 
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+		<input type="submit" value="vote" >
+	</form>
+{% else %}
+	<p>No choices provided for this question.</p>
+{% endif %}
+<p><a href="{% url 'polls:index' %}">Home</a></p>
+
+{% endblock %}

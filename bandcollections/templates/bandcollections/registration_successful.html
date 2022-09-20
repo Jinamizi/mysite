@@ -1,0 +1,11 @@
+{% extends 'bandcollections/base.html' %}
+{% block title %}{{ band.stage_name }}{% endblock %}
+{% block content %}
+<body>
+	<p>Band successfully created.</p>
+	<p>Band name: <strong>{{ band.stage_name|title }}</strong></p>
+	<p>Date formed: <strong>{{ band.date_formed|date:"F j, Y" }}</strong></p>
+	<p>The admin of the site will collect further information on the band and add it to the site. People will be able to find the band and join it. Thank you for registering your band.</p>
+	<p>To join this band, click <a href="{% url 'bandcollections:join' band.id %}">here</a>.</p>
+</body>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+{% extends 'piano/base.html' %}
+{% block title %}Piano{% endblock %}
+
+{% block content %}
+<div class="holder">
+<div class="search-area">
+
+<form action="{% url 'piano:search' %}" method="post">
+	<!-- field for inputing cell one wants to search -->
+	<!-- <input type="text" name="cell" autofocus autocapitalize="none" autocomplete="cell" maxlength="30" required id="cell"> -->
+	{{form.search_field.errors}}
+	{{form.search_field}}
+
+	<!-- search button -->
+	<input type="submit" name="search" value="search">
+
+</form>
+</div>
+
+<!-- context passed to file displayed down here -->
+<div class="info-area">
+	<div class="main-info-area">
+		<label>ID:</label>{{ cellinfo.id }}<br/>
+		<label>Cell Name:</label>{{ cellinfo.name }}<br/>
+		<!-- Radio Access type either 2G 3G or 4G -->
+		<label>RAT:</label>{{ cellinfo.rat }}<br>
+	</div>
+
+	<!--  display other information about the cell -->
+	<div class="other-info">
+		<ul>
+		{% for info in cellinfo %}
+			<li>{{ info }}</li>
+		{% endfor %}
+	</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}

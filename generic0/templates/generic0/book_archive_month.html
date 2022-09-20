@@ -1,0 +1,17 @@
+<p>Books for {{ month }}</p>
+<ul>
+	{% for book in object_list %}
+		<li>{{ book.publication_date|date:"F j, Y" }}: {{ book.title }} {{ book.id }}</li>
+	{% empty %}
+		<p>No books available for this month</p>
+	{% endfor %}
+</ul>
+
+<p>
+	{% if previous_month %}
+		Previous Month: {{ previous_month|date:"F Y" }}
+	{% endif %}
+	{% if next_month %}
+		Next Month: <a href="{# {% url 'generic0:archive-month' {{ next_month.year }} {{ next_month.month}} %} #}">{{ next_month|date:"F Y" }}	
+	{% endif %}
+</p>
